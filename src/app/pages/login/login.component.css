@@ -1,0 +1,13 @@
+.main-wrapper {
+    height: 100vh;
+}
+
+.left-container {
+    color: rgb(95, 32, 155);
+    font-size: 24px;
+}
+
+.right-container {
+    background-color: rgba(73, 11, 131, 0.596);
+    color: white;
+}
