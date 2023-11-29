@@ -29,8 +29,7 @@ export class AuthService {
       localStorage.setItem('token_auth', response?.token);
       this.router.navigate(['/dashboard']);
     }, (error) => {
-      alert('Documento o clave incorrecto')
-      console.log(error)
+      alert(error.error.message)
     });
   }
 

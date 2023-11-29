@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CardComponent } from './components/card/card.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CardComponent } from './components/card/card.component';
     LoginComponent,
     DashboardComponent,
     SidebarComponent,
-    CardComponent
+    CardComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

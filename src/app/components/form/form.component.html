@@ -1,0 +1,55 @@
+<div class="mt-4 h-100">
+    <h1 class="h-25">{{title}}</h1>
+    <form (ngSubmit)="submitForm()" [formGroup]="registerForm" class="h-75">
+    
+        <div *ngFor="let item of formItems" class="form-group">
+            <label for="exampleFormControlSelect1">{{item.label}}</label>
+            <select *ngIf="item.type === 'select'" class="form-control" [formControlName]="item.control">
+                <option *ngFor="let element of item.dropElements" [ngValue]="element">
+                    {{element}}
+                </option>
+            </select>
+            <input *ngIf="item.type !== 'select'" [type]="item.type" [formControlName]="item.control" class="form-control" 
+                    [class.is-invalid]="registerForm.get(item.control)?.invalid
+                        && (registerForm.get(item.control)?.dirty || registerForm.get(item.control)?.touched || isSubmitted)">
+            <div *ngIf="registerForm.get(item.control)?.invalid
+                    && (registerForm.get(item.control)?.dirty || registerForm.get(item.control)?.touched || isSubmitted)" 
+                    class="invalid-feedback">
+                {{item.error}}
+            </div>   
+        </div>
+    
+        <button [type]="button.type" class="btn btn-primary btn-sm w-100 mt-3">{{button.text}}</button>
+    </form>
+</div>
+
+<!-- <div *ngFor="let item of formItems" class="form-group">
+    <label for="exampleFormControlSelect1">Tipo de documento</label>
+    <select class="form-control" formControlName="documentType">
+        <option *ngFor="let documentType of documentTypes" [ngValue]="documentType.title">
+            {{documentType.title}}
+        </option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="formGroupExampleInput">Numero de documento</label>
+    <input type="text" formControlName="document" class="form-control" 
+            [class.is-invalid]="registerForm.get('document').invalid
+                && (registerForm.get('document').dirty || registerForm.get('document').touched || isSubmitted)">
+    <div *ngIf="registerForm.get('document').invalid
+            && (registerForm.get('document').dirty || registerForm.get('document').touched || isSubmitted)" 
+            class="invalid-feedback">
+        Ingresar documento.
+    </div>    
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword1">Clave</label>
+    <input type="password"  formControlName="password" class="form-control"
+            [class.is-invalid]="registerForm.get('password').invalid
+                && (registerForm.get('password').dirty || registerForm.get('password').touched || isSubmitted)">
+    <div *ngIf="registerForm.get('password').invalid
+            && (registerForm.get('password').dirty || registerForm.get('password').touched || isSubmitted)" 
+            class="invalid-feedback">
+        Ingresar password.
+    </div>   
+</div> -->

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,28 +7,22 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  registerForm = this.fb.group({
-    document: ['', Validators.required],
-    password: ['', Validators.required],
-    documentType: [1, Validators.required]
-  });
-  isSubmitted = false
-  documentTypes = [
-    {id:1, title: 'DNI'},
-    {id:2, title: 'LC'},
-    {id:3, title: 'LE'}
+  
+
+  constructor(private authService: AuthService) {}
+
+  formTitle = 'Login';
+  formButton = { type: 'submit', text: 'Ingresar'}
+  formItems = [
+    {label: 'Tipo de documento', type: 'select', control: 'documentType', dropElements: ['DNI', 'LC', 'LE']},
+    {label: 'Número de documento', type: 'text', control: 'document', error: 'Ingresar documento'},
+    {label: 'Password', type: 'password', control: 'password', error: 'Ingresar password'}
   ]
 
-  constructor(private authService: AuthService, 
-    private fb: FormBuilder) {}
-
-  submitForm() {
-    if (this.registerForm.invalid) {
-      return;
-    }
-
+  submitForm(event) {
+    console.log(event)
     this.authService
-      .login(this.registerForm.value.document, this.registerForm.value.password, this.registerForm.value.documentType)
+      .login(event.document, event.password, event.documentType)
     
   }
 
