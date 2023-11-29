@@ -1,0 +1,23 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark h-100">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <span class="fs-4">Unicomer</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li *ngFor="let item of items" class="nav-item">
+        <a  [href]="item.href" [class]="'nav-link ' + item.active" aria-current="page">
+          <svg class="bi me-2" width="16" height="16"></svg>
+          {{item.title}}
+        </a>
+      </li>
+    </ul>
+    <ul class="nav nav-pills flex-column">
+      <li class="nav-item">
+        <a (click)="logout()" class="nav-link text-white" style="cursor: pointer;" aria-current="page">
+          <svg class="bi me-2" width="16" height="16"></svg>
+          Cerrar sesion
+        </a>
+      </li>
+    </ul>
+    <hr>
+</div>

@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 
@@ -28,10 +26,16 @@ export class AuthService {
     this.userService.login(document, password, documentType)
     .subscribe((response) => {
       this.isLoggedIn = true;
-      localStorage.setItem('token_auth', response?.token)
+      localStorage.setItem('token_auth', response?.token);
       this.router.navigate(['/dashboard']);
     }, (error) => {
+      alert('Documento o clave incorrecto')
       console.log(error)
     });
+  }
+
+  logout(): void {
+    localStorage.removeItem('token_auth');
+    this.router.navigate(['/login']);
   }
 }
